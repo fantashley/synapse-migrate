@@ -1,0 +1,9 @@
+---
+
+- name: Import sqlite tasks
+  import_tasks: sqlite_backup.yaml
+  when: database_engine == "sqlite3"
+
+- name: Import postgres tasks
+  import_tasks: postgres_backup.yaml
+  when: database_engine == "psycopg2"

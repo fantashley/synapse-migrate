@@ -1,0 +1,3 @@
+---
+
+database_backup_path: /tmp/synapse_backup.dump

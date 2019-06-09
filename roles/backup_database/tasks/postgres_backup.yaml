@@ -1,0 +1,9 @@
+---
+
+- name: Take postgres dump
+  postgresql_db:
+    name: "{{ database_name }}"
+    login_user: "{{ database_user }}"
+    login_password: "{{ database_password }}"
+    state: dump
+    target: "{{ database_backup_path }}"

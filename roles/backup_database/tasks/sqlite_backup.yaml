@@ -1,0 +1,4 @@
+---
+
+- name: Take sqlite dump
+  command: sqlite3 {{ database_path }} ".backup '{{ database_backup_path }}'"
