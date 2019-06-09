@@ -2,7 +2,7 @@
 
 - name: Take postgres dump
   postgresql_db:
-    name: "{{ database_name }}"
+    name: "{{ database }}"
     login_user: "{{ database_user }}"
     login_password: "{{ database_password }}"
     state: dump

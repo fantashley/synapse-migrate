@@ -1,20 +1,20 @@
 ---
 
 - name: Load homeserver configuration
-  shell: cat {{ homeserver_yaml_path }}
+  shell: cat {{ synapse_home }}/{{ homeserver_yaml_config }}
   register: homeserver_config
 
 - name: Save homeserver configuration
   set_fact:
     homeserver_conf: "{{ homeserver_config.stdout | from_yaml }}"
 
-- name: Set database type
+- name: Set database type and location
   set_fact:
     database_engine: "{{ homeserver_conf['database']['name'] }}"
+    database: "{{ homeserver_conf['database']['args']['database'] }}"
 
-- name: Set database name
+- name: Set database credentials if postgres
   set_fact:
-    database_name: "{{ homeserver_conf['database']['args']['database'] }}"
     database_user: "{{ homeserver_conf['database']['args']['user'] }}"
     database_password: "{{ homeserver_conf['database']['args']['password'] }}"
   when: database_engine == "psycopg2"
