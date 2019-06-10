@@ -2,3 +2,5 @@
 
 - name: Take sqlite dump
   command: sqlite3 {{ database }} ".backup '{{ database_backup_path }}'"
+  args:
+    creates: "{{ database_backup_path }}"

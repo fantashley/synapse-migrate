@@ -3,3 +3,8 @@
 
 [synapse_server:vars]
 synapse_home=/home/synapse/synapse
+
+s3_url=
+s3_bucket=
+s3_access_key=
+s3_secret_key=

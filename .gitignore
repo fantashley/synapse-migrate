@@ -1,1 +1,4 @@
+hosts
 playbook.yaml
+venv/
+test.yaml

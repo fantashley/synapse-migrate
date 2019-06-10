@@ -1,9 +1,20 @@
 ---
 
-- name: Import sqlite tasks
+- name: Perform sqlite dump
   import_tasks: sqlite_backup.yaml
   when: database_engine == "sqlite3"
 
-- name: Import postgres tasks
+- name: Perform postgres dump
   import_tasks: postgres_backup.yaml
   when: database_engine == "psycopg2"
+
+- name: Save dump to S3 
+  aws_s3:
+    bucket: "{{ s3_bucket }}"
+    s3_url: "{{ s3_url }}"
+    access_key: "{{ s3_access_key }}"
+    secret_key: "{{ s3_secret_key }}"
+    mode: put
+    src: "{{ database_backup_path }}"
+    object: database/synapsedump.sql
+    encrypt: no
